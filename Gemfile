@@ -46,6 +46,7 @@ group :development, :test do
   # Lints
   gem 'rubocop', '0.55.0'
   gem 'rubocop-rspec', '1.25.1'
+  gem 'rspec-rails'
 end
 
 group :development do
