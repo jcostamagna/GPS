@@ -1,0 +1,36 @@
+language: ruby
+rvm:
+  - 2.3.3
+
+addons:
+  code_climate:
+    repo_token: d71e0d9a71e70ad61a16ea688c05d1380566eb20855709ea935df7152b29206a
+
+before_install:
+  - "echo '--colour' > ~/.rspec"
+  - "echo 'gem: --no-document' > ~/.gemrc"
+  # Solves rainbow issue: https://github.com/sickill/rainbow/issues/48
+  - gem update --system
+
+before_script:
+  - cp config/database.travis.yml config/database.yml
+  - psql -c "CREATE USER \"gps\" WITH PASSWORD 'gps';" -U postgres
+  - psql -c "DROP DATABASE IF EXISTS \"gps_test\";" -U postgres
+  - psql -c "CREATE DATABASE \"gps_test\" ENCODING 'utf8';" -U postgres
+  - bundle exec rake db:migrate
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
+install:
+  - gem install bundler
+  - bundle install --retry=3
+
+script:
+  - bundle exec rspec spec -fd
+  - bundle exec rubocop app spec -R --format simple
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+cache:
+  bundler: true
