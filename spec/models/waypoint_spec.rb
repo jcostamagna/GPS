@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Waypoint do
   before do
     create(:waypoint)
-    #build(:waypoint, latitude: 80, longitude: 80, time: '2016-06-02 20:45:00')
+    # build(:waypoint, latitude: 80, longitude: 80, time: '2016-06-02 20:45:00')
   end
 
   it { is_expected.to validate_presence_of(:latitude) }
@@ -22,7 +22,7 @@ describe Waypoint do
     let(:latitude) { 90.05 }
     let(:longitude) { -120 }
     let(:time) { '2016-06-02 20:45:00' }
-    let(:vehicle) { create(:vehicle, vehicle_id: "HA-3452") }
+    let(:vehicle) { create(:vehicle, vehicle_id: 'HA-3452') }
     let(:wrong_waypoint) do
       build(:waypoint, latitude: latitude, longitude: longitude, time: time)
     end
