@@ -4,7 +4,7 @@ rvm:
 
 addons:
   code_climate:
-    repo_token: d71e0d9a71e70ad61a16ea688c05d1380566eb20855709ea935df7152b29206a
+    repo_token: df0062342f50a2fcb9b7c63b726b4058e4b17b7d5f0b35d1994d482a18a25303
 
 before_install:
   - "echo '--colour' > ~/.rspec"
