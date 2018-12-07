@@ -6,6 +6,11 @@ addons:
   code_climate:
     repo_token: df0062342f50a2fcb9b7c63b726b4058e4b17b7d5f0b35d1994d482a18a25303
 
+env:
+  global:
+    - RAILS_ENV=test
+    - CC_TEST_REPORTER_ID=df0062342f50a2fcb9b7c63b726b4058e4b17b7d5f0b35d1994d482a18a25303
+
 before_install:
   - "echo '--colour' > ~/.rspec"
   - "echo 'gem: --no-document' > ~/.gemrc"
